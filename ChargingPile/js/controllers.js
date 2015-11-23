@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
 	}
 ])
 .controller('PilelistCtrl', ['$scope','$ionicModal',
-	function($scope, $ionicHistory,$ionicModal) {
+	function($scope,$ionicModal) {
 		$scope.pilelist ={
 			type:0,
 			location:"未知"
@@ -115,5 +115,12 @@ angular.module('starter.controllers', [])
 				});
 			}
 		})
+		
+		$scope.user={
+			head:"img/head.png",
+			level:"充电新手",
+			account:"187****7796",
+			balance:5.00
+		}
 	}
 ])
