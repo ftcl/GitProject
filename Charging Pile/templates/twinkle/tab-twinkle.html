@@ -1,0 +1,14 @@
+<ion-view view-title="Account">
+  <ion-content>
+    <ion-list>
+    <ion-toggle  ng-model="settings.enableFriends">
+        Enable Friends
+    </ion-toggle>
+    </ion-list>
+    <ion-gallery ion-gallery-items="items"></ion-gallery>
+    {{arrarr}}
+    <button class="button button-assertive button-outline button-block" ng-click="showSheet()">分享</button>
+    <button class="button button-assertive button-outline button-block" ng-click="browser()">打开浏览器</button>
+    <button class="button button-assertive button-outline button-block" ng-click="goBaiduMap()">打开百度地图</button>
+  </ion-content>
+</ion-view>

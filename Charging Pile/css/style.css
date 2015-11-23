@@ -1,0 +1,70 @@
+.contentgray{
+	background: #F5F5F5;
+}
+/*ion-slide-box */
+.slider {
+	height: 100%;
+}
+.box {
+	height: 100%;
+	text-align: center;
+}
+.blue {
+	background: blue;
+}
+.yellow {
+	background: yellow;
+}
+.pink {
+	background: pink;
+}
+/*ion-slide-box */
+/*form*/
+.itemcenter{
+	text-align: center;
+	font-size: 12px;
+	color: #8F8F8F;
+}
+#loginlist .item{
+	border:none;
+	background: transparent;
+}
+#loginlist input{
+	border: solid 1px #8F8F8F;
+	border-radius: 2px;
+	padding: 0 10px;
+	min-height: 40px;
+	line-height: 40px;
+	background: #FFFFFF;
+}
+.codebtn{
+	line-height: 40px;
+	min-height: 40px;
+	margin-left: 20px;
+	width: 116px;
+	text-align: center;
+	background: #33cd5f;
+}
+.inputfull{
+	width: 100%;
+}
+#loginlist .button-full{
+	border-left: #28a54c solid 1px;
+	border-right: #28a54c solid 1px;
+}
+.item-input{
+	padding: 6px 0;
+}
+.loginli{
+	line-height: 10px;
+	border: none;
+	background: transparent;
+}
+.graybg{
+	background: #E5E5E5;
+}
+.regista{
+	color: #11C1F3;
+	text-decoration: underline;
+}
+/*form*/
