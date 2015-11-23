@@ -1,0 +1,30 @@
+<ion-view view-title="{{chat.name}}">
+	<ion-content class="padding">
+		<div class="row">
+			<div class="col col-50">
+				<div class="col-box bgcity">
+					<a class="button icon-right ion-ios-arrow-down button-clear button-dark" ng-click="selectCity()">{{home.city}}</a>
+				</div>
+				<div class="col-box interval bgweather">
+					<div class="clo-box-container">
+						<span ng-bind="home.day" class=""></span>
+						<span ng-bind="home.week" class="clo-box-span"></span>
+						<span ng-bind="home.weather" class="clo-box-span"></span>
+					</div>
+				</div>
+				<div class="col-box bgstar">
+				</div>
+			</div>
+			<div class="col col-50">
+				<div class="col-box bglist">
+				</div>
+				<div class="col-box bgblue interval">
+				</div>
+				<div class="col-box bgblue interval">
+				</div>
+				<div class="col-box bgblue">
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

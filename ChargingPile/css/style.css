@@ -68,3 +68,34 @@
 	text-decoration: underline;
 }
 /*form*/
+/*home*/
+.col-box{
+	width: 100%;
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+}
+.interval{
+	margin: 5px 0;
+}
+.clo-box-span{
+	display: block;
+}
+.bgcity{
+	background: #83B1FB;
+	height: 45px;
+}
+.bgweather{
+	background: #ECD37C;
+	height: 100px;
+	padding:20px ;
+}
+.bgstar{
+	background: #7572EA;
+	height: 200px;
+}
+.bglist{
+	background: #B361EF;
+	height: 150px;
+}
+/*home*/

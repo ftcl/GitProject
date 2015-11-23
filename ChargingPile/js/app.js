@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.city'])
 	.run(function($ionicPlatform, $state,$rootScope,LoaclStorageServ) {
 		$ionicPlatform.ready(function() {
 			$rootScope.isNavigation = LoaclStorageServ.getBoolean("isNavigation",true);
@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 				})
 
 			.state('login', {
-				url: '/login',
+				url: '/login/:PageState',
 				cache: true,
 				templateUrl: 'templates/login/login.html',
 				controller: 'LoginCtrl'

@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', ['$scope', '$rootScope', '$timeout',
-	function($scope, $rootScope, $timeout) {
+.controller('LoginCtrl', ['$scope', '$rootScope', '$timeout', '$state', '$stateParams','LoaclStorageServ',
+	function($scope, $rootScope, $timeout, $state, $stateParams,LoaclStorageServ) {
 		$scope.codeBtn = {
 			text: "获取验证码",
 			time: ""
@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 		$scope.login = {
 			account: "",
 			password: "",
-			register: false
+			register: true
 		}
 		$scope.GetCode = function() {
 			if (typeof($scope.codeBtn.time) == "string") {
@@ -19,7 +19,9 @@ angular.module('starter.controllers', [])
 			}
 		};
 		$scope.doLogin = function() {
-			$scope.go()
+			$rootScope.isLogin = true;
+			LoaclStorageServ.set("isLogin",true);
+			$state.go("tab." + $stateParams.PageState);
 		};
 
 		function calctime() {
@@ -36,15 +38,37 @@ angular.module('starter.controllers', [])
 	}
 ])
 
-.controller('HomeCtrl', ['$scope', function($scope) {
-
-}])
+.controller('HomeCtrl', ['$scope', 'WeatherServ','$ionicModal',
+	function($scope, WeatherServ,$ionicModal) {
+		$scope.home = {
+			city: "重庆",
+			day: WeatherServ.day(),
+			week: WeatherServ.week(),
+			weather: WeatherServ.weather("重庆")
+		};
+		$scope.selectCity = function() {
+			if (!$scope.modal) {
+				$ionicModal.fromTemplateUrl('templates/home/selectcity.html', {
+					scope: $scope,
+					animation: 'slide-in-up'
+				}).then(function(modal) {
+					$scope.modal = modal;
+					$scope.modal.show();
+				});
+			} else {
+				$scope.modal.show();
+			}
+		};
+	}
+])
 
 .controller('ScanCtrl', ['$scope', '$rootScope', '$state',
 	function($scope, $rootScope, $state) {
 		$scope.$on("$ionicView.enter", function() {
 			if (!$rootScope.isLogin) {
-				$state.go("login");
+				$state.go("login", {
+					PageState: "scan"
+				});
 			}
 		})
 	}
@@ -54,7 +78,9 @@ angular.module('starter.controllers', [])
 	function($scope, $rootScope, $state) {
 		$scope.$on("$ionicView.enter", function() {
 			if (!$rootScope.isLogin) {
-				$state.go("login");
+				$state.go("login", {
+					PageState: "twinkle"
+				});
 			}
 		})
 	}
@@ -64,7 +90,9 @@ angular.module('starter.controllers', [])
 	function($scope, $rootScope, $state) {
 		$scope.$on("$ionicView.enter", function() {
 			if (!$rootScope.isLogin) {
-				$state.go("login");
+				$state.go("login", {
+					PageState: "my"
+				});
 			}
 		})
 	}
