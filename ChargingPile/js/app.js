@@ -57,7 +57,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
 					}
 				}
 			})
-
+			
+			.state('pilelist', {
+				url: '/pilelist',
+				cache: true,
+				templateUrl: 'templates/home/pilelist.html',
+				controller: 'PilelistCtrl'
+			})
+			
+			.state('pilesearch', {
+				url: '/pilesearch',
+				cache: true,
+				templateUrl: 'templates/home/pilesearch.html',
+				controller: 'PilesearchCtrl'
+			})
+			
 			.state('tab.scan', {
 				url: '/scan',
 				views: {

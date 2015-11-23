@@ -61,7 +61,27 @@ angular.module('starter.controllers', [])
 		};
 	}
 ])
-
+.controller('PilelistCtrl', ['$scope','$ionicModal',
+	function($scope, $ionicHistory,$ionicModal) {
+		$scope.pilelist ={
+			type:0,
+			location:"未知"
+		}
+		$scope.barclick=function(index){
+			$scope.pilelist.type = index;
+		}
+	}
+])
+.controller('PilesearchCtrl', ['$scope','$ionicHistory','$ionicModal',
+	function($scope, $ionicHistory,$ionicModal) {
+		$scope.goBack= function(){
+			$ionicHistory.goBack();
+		}
+		$scope.searchclick=function(index){
+			$scope.pilelist.type = index;
+		}
+	}
+])
 .controller('ScanCtrl', ['$scope', '$rootScope', '$state',
 	function($scope, $rootScope, $state) {
 		$scope.$on("$ionicView.enter", function() {
