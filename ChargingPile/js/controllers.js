@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', ['$scope', '$rootScope', '$timeout', '$state', '$stateParams','LoaclStorageServ',
-	function($scope, $rootScope, $timeout, $state, $stateParams,LoaclStorageServ) {
+.controller('LoginCtrl', ['$scope', '$rootScope', '$timeout', '$state', '$stateParams','LoaclStorageServ','$ionicHistory',
+	function($scope, $rootScope, $timeout, $state, $stateParams,LoaclStorageServ,$ionicHistory) {
 		$scope.codeBtn = {
 			text: "获取验证码",
 			time: ""
