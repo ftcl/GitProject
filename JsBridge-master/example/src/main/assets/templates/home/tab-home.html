@@ -1,0 +1,47 @@
+<ion-view view-title="{{chat.name}}">
+	<ion-content>
+		<div class="row">
+			<div class="col col-50">
+				<div class="col-box bgcity">
+					<a class="button icon-right ion-ios-arrow-down button-clear button-dark" ng-click="selectCity()">{{home.city}}</a>
+				</div>
+				<div class="col-box bgweather interval">
+					<div class="clo-box-container">
+						<span ng-bind="home.day" class=""></span>
+						<span ng-bind="home.week" class="clo-box-span"></span>
+						<span ng-bind="home.weather" class="clo-box-span"></span>
+					</div>
+				</div>
+				<div class="col-box bgstar interval">
+					扫码充电
+				</div>
+				<a class="col-box bgsearch" href="#/pilesearch">
+					桩群搜索
+				</a>
+				<a class="col-box bgsearch">
+					{{httpback}}
+				</a>
+			</div>
+			<div class="col col-50">
+				<a class="col-box bglist" href="#/pilelist">
+					桩群列表
+				</a>
+				<a class="col-box bgmap interval">
+					地图信息
+				</a>
+				<div class="col-box bgpay interval">
+					在线充值
+				</div>
+				<div class="col-box bgtel interval">
+					客服电话
+				</div>
+				<div class="col-box bgissue">
+					问题反馈
+				</div>
+				<div class="col-box bgissue interval" ng-click="httpPost()">
+					测试http
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

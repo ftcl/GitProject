@@ -1,0 +1,24 @@
+<ion-view>
+	<ion-header-bar align-title="center" class="bar-calm">
+		<div class="buttons">
+			<a class="button button-icon ion-ios-arrow-back" href="#/tab/home"></a>
+		</div>
+		<h1 class="title">桩群列表</h1>
+		<div class="buttons">
+			<a class="button button-icon ion-ios-search" nav-transition="none" href="#/pilesearch"></a>
+			<a class="button button-icon ion-android-map" href=""></a>
+		</div>
+	</ion-header-bar>
+	<ion-content scroll=false>
+		<div class="contentcalm">
+		<div class="button-bar pilelistbar">
+			<a class="button pilelistbar_a" ng-class="{'selectpile':pilelist.type==0}" ng-click="barclick(0)">全部</a>
+			<a class="button pilelistbar_a" ng-class="{'selectpile':pilelist.type==1}" ng-click="barclick(1)">自营</a>
+			<a class="button pilelistbar_a" ng-class="{'selectpile':pilelist.type==2}" ng-click="barclick(2)">非自营</a>
+		</div>
+		</div>
+		<div class="pilelistlocation">
+			<span>当前：{{pilelist.location}}</span> <a class="button button-icon icon ion-ios-reload"></a>
+		</div>
+	</ion-content>
+</ion-view>
