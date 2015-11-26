@@ -119,11 +119,9 @@ angular.module('starter.controllers', [])
 
 		function connectWebViewJavascriptBridge(callback) {
 			if (window.WebViewJavascriptBridge) {
-			PopupServ.alert("WebViewJavascriptBridgeReady",1);
 				callback(WebViewJavascriptBridge)
 			} else {
 				document.addEventListener('WebViewJavascriptBridgeReady', function() {
-				PopupServ.alert("WebViewJavascriptBridgeReady",2);
 					callback(WebViewJavascriptBridge)
 				}, false)
 			}
@@ -136,12 +134,22 @@ angular.module('starter.controllers', [])
 				};
 				responseCallback(data);
 			});
+			bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+					$scope.$apply(function() {
+						PopupServ.alert("selectImageCallback",data);
+						$scope.img = data;
+					});
+					responseData = {
+						'Javascript Says': 'Right back atcha!'
+					}
+					responseCallback(responseData)
+				});
 		})
 		$scope.selectLibrary = function() {
 			window.WebViewJavascriptBridge.callHandler('selectImageHandler', "打开相册", function(response) {
-				PopupServ.alert("selectImageHandler",response);
+//				PopupServ.alert("selectImageHandler",response);
 			})
-		}
+		};
 	}
 ])
 

@@ -19,15 +19,15 @@ import com.google.gson.Gson;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private final String TAG = "MainActivity";
+    private final String TAG = "MainActivity";
 
-	BridgeWebView webView;
+    BridgeWebView webView;
 
-	Button button;
+    Button button;
 
-	int RESULT_CODE = 0;
+    int RESULT_CODE = 0;
 
-	ValueCallback<Uri> mUploadMessage;
+    ValueCallback<Uri> mUploadMessage;
 
     static class Location {
         String address;
@@ -39,10 +39,10 @@ public class MainActivity extends Activity implements OnClickListener {
         String testStr;
     }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         webView = (BridgeWebView) findViewById(R.id.webView);
 
@@ -55,32 +55,30 @@ public class MainActivity extends Activity implements OnClickListener {
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setAppCacheMaxSize(1024*1024*8);
+        webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
         String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
         webView.getSettings().setAppCachePath(appCachePath);
         webView.getSettings().setAppCacheEnabled(true);
 
         webView.setDefaultHandler(new DefaultHandler());
 
-		webView.setWebChromeClient(new WebChromeClient() {
+        webView.setWebChromeClient(new WebChromeClient() {
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
+                this.openFileChooser(uploadMsg);
+            }
 
-			@SuppressWarnings("unused")
-			public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType, String capture) {
-				this.openFileChooser(uploadMsg);
-			}
+            @SuppressWarnings("unused")
+            public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
+                this.openFileChooser(uploadMsg);
+            }
 
-			@SuppressWarnings("unused")
-			public void openFileChooser(ValueCallback<Uri> uploadMsg, String AcceptType) {
-				this.openFileChooser(uploadMsg);
-			}
+            public void openFileChooser(ValueCallback<Uri> uploadMsg) {
+                mUploadMessage = uploadMsg;
+            }
+        });
 
-			public void openFileChooser(ValueCallback<Uri> uploadMsg) {
-				mUploadMessage = uploadMsg;
-			}
-		});
-
-		webView.loadUrl("file:///android_asset/index.html");
-
+        webView.loadUrl("file:///android_asset/index.html");
 //        webView.callHandler("selectImage", new Gson().toJson(user), new CallBackFunction() {
 //            @Override
 //            public void onCallBack(String data) {
@@ -88,60 +86,55 @@ public class MainActivity extends Activity implements OnClickListener {
 //            }
 //        });
 
-		webView.registerHandler("selectImageHandler", new BridgeHandler() {
-
-			@Override
-			public void handler(String data, CallBackFunction function) {
+        webView.registerHandler("selectImageHandler", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
                 pickFile();
                 function.onCallBack(data);
-			}
-
-		});
+            }
+        });
 
 //        User user = new User();
 //        Location location = new Location();
 //        location.address = "SDU";
 //        user.location = location;
 //        user.name = "Bruce";
-
-
-
 //        webView.send("hello");
+    }
 
-	}
+    public void pickFile() {
+        Intent chooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        chooserIntent.setType("image/*");
+        startActivityForResult(chooserIntent, RESULT_CODE);
+    }
 
-	public void pickFile() {
-		Intent chooserIntent = new Intent(Intent.ACTION_GET_CONTENT);
-		chooserIntent.setType("image/*");
-		startActivityForResult(chooserIntent, RESULT_CODE);
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == RESULT_CODE) {
+//            if (null == mUploadMessage) {
+//                return;
+//            }
+            Uri result = intent.getData();
+            webView.callHandler("selectImageCallback", new Gson().toJson(result), new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+                }
+            });
+        }
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		if (requestCode == RESULT_CODE) {
-			if (null == mUploadMessage){
-				return;
-			}
-			Uri result = intent == null || resultCode != RESULT_OK ? null : intent.getData();
-			mUploadMessage.onReceiveValue(result);
-			mUploadMessage = null;
-		}
-	}
-
-	@Override
-	public void onClick(View v) {
-		if (button.equals(v)) {
+    @Override
+    public void onClick(View v) {
+        if (button.equals(v)) {
             webView.callHandler("functionInJs", "data from Java", new CallBackFunction() {
 
-				@Override
-				public void onCallBack(String data) {
-					// TODO Auto-generated method stub
-					Log.i(TAG, "reponse data from js " + data);
-				}
+                @Override
+                public void onCallBack(String data) {
+                    // TODO Auto-generated method stub
+                    Log.i(TAG, "reponse data from js " + data);
+                }
 
-			});
-		}
-
-	}
-
+            });
+        }
+    }
 }
