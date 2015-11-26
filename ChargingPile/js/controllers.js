@@ -38,8 +38,8 @@ angular.module('starter.controllers', [])
 	}
 ])
 
-.controller('HomeCtrl', ['$scope', 'WeatherServ','$ionicModal',
-	function($scope, WeatherServ,$ionicModal) {
+.controller('HomeCtrl', ['$scope', 'WeatherServ','$ionicModal','HttpServ',
+	function($scope, WeatherServ,$ionicModal,HttpServ) {
 		$scope.home = {
 			city: "重庆",
 			day: WeatherServ.day(),
@@ -59,6 +59,13 @@ angular.module('starter.controllers', [])
 				$scope.modal.show();
 			}
 		};
+		
+		$scope.httpPost=function(){
+			var data={
+				data:"test data"
+			}
+			HttpServ.post(data)
+		}
 	}
 ])
 .controller('PilelistCtrl', ['$scope','$ionicModal',
