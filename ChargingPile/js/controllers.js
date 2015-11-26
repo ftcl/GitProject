@@ -93,7 +93,7 @@ angular.module('starter.controllers', [])
 ])
 .controller('ScanCtrl', ['$scope', '$rootScope', '$state',
 	function($scope, $rootScope, $state) {
-		$scope.$on("$ionicView.enter", function() {
+		$scope.$on("$ionicView.beforeEnter", function() {
 			if (!$rootScope.isLogin) {
 				$state.go("login", {
 					PageState: "scan"
@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
 
 .controller('TwinkleCtrl', ['$scope', '$rootScope', '$state',
 	function($scope, $rootScope, $state) {
-		$scope.$on("$ionicView.enter", function() {
+		$scope.$on("$ionicView.beforeEnter", function() {
 			if (!$rootScope.isLogin) {
 				$state.go("login", {
 					PageState: "twinkle"
@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
 
 .controller('MyCtrl', ['$scope', '$rootScope', '$state',
 	function($scope, $rootScope, $state) {
-		$scope.$on("$ionicView.enter", function() {
+		$scope.$on("$ionicView.beforeEnter", function() {
 			if (!$rootScope.isLogin) {
 				$state.go("login", {
 					PageState: "my"
