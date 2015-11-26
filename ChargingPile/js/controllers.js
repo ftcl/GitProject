@@ -64,7 +64,9 @@ angular.module('starter.controllers', [])
 			var data={
 				data:"test data"
 			}
-			HttpServ.post(data)
+			HttpServ.post(data).then(function(data){
+				$scope.httpback = data;
+			})
 		}
 	}
 ])

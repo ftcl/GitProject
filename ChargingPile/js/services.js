@@ -155,6 +155,8 @@ angular.module('starter.services', [])
 						'Content-Type': 'application/x-www-form-urlencoded'
 					}
 				}).success(function(response) {
+					
+					PopupServ.alert("成功", response);
 					q.resolve(response);
 				});
 				return q.promise;
