@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/ionic.css" />
+		<script src="js/ionic.bundle.js"></script>
+		<script src="js/index.js"></script>
+		<style type="text/css">
+			.fontweight {
+				font-weight: 600;
+			}
+			.usermess {
+				margin: 5px 0;
+				color: #AAAAAA;
+				display: block;
+				padding: 5px 0;
+			}
+			.btn {
+				background: #FFFFFF;
+				border: solid 2px #E6B400;
+				border-radius: 2px;
+				color: #E6B400;
+				font-weight: 600;
+			}
+			.posrela {
+				position: relative;
+			}
+			.usertech {
+				display: inline-block;
+				color: #E6B400;
+				position: absolute;
+				right: 0;
+				font-weight: 600;
+				padding: 3px 0;
+			}
+			.backgroundwihte {
+				background: #FFFFFF;
+			}
+			.paddingleft {
+				padding-left: 8px;
+			}
+			.btnyy {
+				font-size: 13px;
+				padding: 0 5px;
+				background: #FFFFFF;
+				border: solid 1px #E6B400;
+				color: #E6B400;
+				font-weight: 500;
+				min-height: 22px;
+				line-height: 22px;
+				position: absolute;
+				top: 14px;
+				right: 12px;
+			}
+			.itemchange {
+				height: 100%;
+				background: #FFFFFF;
+				color: #CCCCCC;
+				border-bottom: solid 1px #B2B2B2;
+				padding: 0;
+			}
+			.itemchange span {
+				text-align: center;
+			}
+			.itemactive {
+				color: #E6B400;
+				border-bottom: solid 1px #E6B400;
+			}
+			.comment {
+				background: #FFFFFF;
+				border-bottom: solid 1px #CCCCCC;
+			}
+			.marginnone {
+				margin: 0;
+			}
+			.spantime {
+				position: absolute;
+				right: 12px;
+			}
+			.commentimagedefail{
+				background: url("img/techdetail-03.png");
+				width: 15px;
+				height: 15px;
+				display: inline-block;
+				background-size: contain;
+				margin-right: 5px;
+			}
+			.commentimage{
+				background: url("img/techdetail-04.png");
+				background-size: contain;
+			}
+			textarea{
+				color: #000000;
+				border: #E4E5E7 solid 1px;
+				width: 95%;
+				border-radius: 3px;
+				resize:none;
+			}
+			.btndiv{
+				text-align: center;
+			}
+			.btnsubmit{
+				border: solid 1px #A76450;
+				background: #A76450;
+				color: #FFFFFF;
+				padding: 3px 30px;
+				border-radius: 2px;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+
+	<body ng-app="ionicApp" ng-controller="TechDetailCtrl">
+		<ion-content style="background: rgb(241,242,246);">
+			<div class="list">
+				<a class="item item-thumbnail-left">
+					<img ng-src="{{userhead}}">
+					<h2 ng-bind="username" style="font-weight: 600;"></h2>
+					<span class="usermess">{{usersex}} · {{userage}} · {{useraddress}}人</span>
+					<p class="posrela">
+						<button class="btn">{{userlevel}}</button> <span class="usertech" ng-bind="usertech"></span></p>
+				</a>
+			</div>
+			<div class="row backgroundwihte">
+				<div class="col">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{techdetail}}</p>
+				</div>
+			</div>
+			<!--****************************-->
+			<div class="item item-divider paddingleft">
+				服务项目
+			</div>
+			<div class="list">
+				<a href="#" class="item item-button-right paddingleft" ng-repeat="tech in techs" ng-click="Order(tech.severName,tech.severId,tech.price,tech.severPic)"> 
+					<span>{{tech.severName}}&nbsp;&nbsp;&nbsp;￥{{tech.price}}元/60分钟 </span>
+					<button class="btnyy">
+						预&nbsp;&nbsp;&nbsp;约
+					</button>
+				</a>
+			</div>
+			<!--****************************-->
+			<div class="item item-divider paddingleft">
+				客户评价
+			</div>
+			<div class="row itemchange">
+				<span class="col itemspan" ng-class="{itemactive:itemid==0}" ng-click="changeComment(0)">
+						好评({{messageGComment.length}})
+					</span>
+				<span class="col itemspan" ng-class="{itemactive:itemid==1}" ng-click="changeComment(1)">
+						中评({{messageZComment.length}})
+					</span>
+				<span class="col itemspan" ng-class="{itemactive:itemid==2}" ng-click="changeComment(2)">
+						差评({{messageBComment.length}})
+					</span><span class="col">
+					</span><span class="col itemspan">
+						好评率({{rate}}%)
+					</span>
+			</div>
+			<div class="comment padding" ng-repeat="comment in comments">
+				<p ng-bind="comment.content"></p>
+				<span ng-bind="comment.tel">
+				</span>
+				<span class="spantime" ng-bind="comment.time">
+				</span>
+			</div>
+			<!--****************************-->
+			<!--<div class="item item-divider paddingleft">
+				发表评论
+			</div>
+			<div class="row backgroundwihte">
+				<div class="col col-25 colorgray">评论星级:</div>
+				<div class="col"><span class="commentimagedefail" ng-repeat="i in commentimages" ng-class="{commentimage:$index<=commentlevel}" ng-click="CommentStar($index)"></span></div>
+			</div>
+			<div class="row backgroundwihte">
+				<div class="col col-25 colorgray">评论星级:</div>
+				<div class="col"><textarea name="" rows="5" ng-model="newcomment.commentcontent"></textarea></div>
+			</div>
+			<div class="row backgroundwihte">
+				<div class="col btndiv"><button class="btnsubmit" ng-click="COmment()">提交</button></div>
+			</div>-->
+		</ion-content>
+	</body>
+
+</html>

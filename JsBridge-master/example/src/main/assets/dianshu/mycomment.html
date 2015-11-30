@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/ionic.css" />
+        <script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/ionic.bundle.js"></script>
+		<script src="js/index.js"></script>
+		<style type="text/css">
+			.type {
+				color: #000000;
+				font-size: 18px;
+			}
+			
+			.colorgray {
+				color: #B2B2B2;
+			}
+			
+			.time {
+				font-size: 12px;
+			}
+			
+			.commentp {
+				border: solid 1px #B2B2B2;
+				border-radius: 3px;
+				padding: 5px;
+				background: #FDFCF8;
+			}
+			
+			.commentspan {
+				display: block;
+			}
+			
+			.textright {
+				text-align: right;
+			}
+			
+			.colorE {
+				color: #E7C1AA;
+				margin-left: 5px;
+			}
+			
+			.marginbottom {
+				margin-bottom: 10px;
+			}
+			
+			.commentspan {
+				word-break: normal;
+				width: auto;
+				display: block;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+			.commentimage {
+				background: url("img/mycomment.png");
+				width: 10px;
+				height: 10px;
+				display: inline-block;
+				background-size: contain;
+				margin-right: 2px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="ionicApp" ng-controller="MyCommentCtrl">
+		<ion-content style="background: rgb(241,242,246);">
+            {{showdata}}
+			<div class="list marginnone borderdotted padding">
+				<div class="item marginbottom" href="#" ng-repeat="comment in comments">
+					{{$index+1}} .<span ng-bind="comment.severName" class="type"></span>
+					<p>
+						<span ng-bind="comment.time" class="colorgray time"></span>
+						<span ng-repeat="i in commentimages" ng-if="$index<comment.rank" class="commentimage"></span>
+					</p>
+					<p ng-bind="comment.content" class="time" style="color:#B2B2B2 ;font-size: 12px;"></p>
+				</div>
+			</div>
+		</ion-content>
+	</body>
+
+</html>

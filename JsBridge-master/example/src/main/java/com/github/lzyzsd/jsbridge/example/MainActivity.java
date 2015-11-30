@@ -39,6 +39,12 @@ public class MainActivity extends Activity implements OnClickListener {
         String testStr;
     }
 
+    static class Token{
+        String token;
+    }
+    String URL = "http://sh.plottwists.com/home/OrderComment";
+    String TokenJi ="66ae8300-bede-4535-823a-e9379e7f8064";
+    String TokenYong ="c2ac4762-3645-4806-a62a-5017902a48f6";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +84,8 @@ public class MainActivity extends Activity implements OnClickListener {
             }
         });
 
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/dianshu/tech_mycomment.html");
+
 //        webView.callHandler("selectImage", new Gson().toJson(user), new CallBackFunction() {
 //            @Override
 //            public void onCallBack(String data) {
@@ -91,6 +98,19 @@ public class MainActivity extends Activity implements OnClickListener {
             public void handler(String data, CallBackFunction function) {
                 pickFile();
                 function.onCallBack(data);
+            }
+        });
+        webView.registerHandler("CallGetTokenJi", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+
+                function.onCallBack(TokenJi);
+            }
+        });
+        webView.registerHandler("CallGetTokenYong", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                function.onCallBack(TokenYong);
             }
         });
 

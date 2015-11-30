@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/ionic.css" />
+		<script src="js/ionic.bundle.js"></script>
+		<script src="js/index.js"></script>
+		<style type="text/css">
+			.divcenter {
+				text-align: center;
+			}
+			.btn {
+				width: 80%;
+				background: #FFFFFF;
+				border: solid 1px #E5E5E5;
+				border-radius: 2px;
+				padding: 4px 0;
+			}
+			.item.activated {
+				background: #FFFFFF;
+			}
+			.dataleft {
+				position: absolute;
+				left: 15px;
+				height: 60px;
+				display: block;
+				width: 100px;
+				top: 30px;
+				padding-top: 5px;
+			}
+			.paddingleft{
+				padding-left: 95px;
+			}
+			.dataleftspan{
+				color: #000000;
+				font-weight: 600;
+				font-size: 20px;
+			}
+			.dataleftmoney{
+				color: #000000;
+				font-weight: 600;
+				font-size: 30px;
+			}
+			.datacenter span{
+				display: block;
+				margin-top: 5px;
+			}
+			.type{
+				color: #000000;
+				font-weight: 600;
+				font-size: 16px;
+			}
+			.introduction{
+				color: #B2B2B2;
+				font-size: 16px;
+			}
+			.overtime{
+				color: #FF7900;
+				font-size: 12px;
+			}
+			.maginbottom{
+				margin-bottom: 10px;
+			}
+			.nocoupons{
+				text-align: center;
+				padding: 5px;
+				width: 100%;
+				display: block;
+			}
+			.brspan {
+				word-break: normal;
+				width: auto;
+				display: block;
+				white-space: pre-wrap;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body ng-app="ionicApp" ng-controller="CouponsCtrl">
+		<ion-content style="background: rgb(241,242,246);">
+			<div class="item item-divider divcenter ">
+				<button class="btn" ng-click="GetCoupons()">领取优惠券</button>
+			</div>
+			<div class="list marginnone borderdotted padding">
+				<a class="item item-thumbnail-right paddingleft maginbottom" ng-repeat="coupon in coupons">
+					<img src="img/mycoupons-02.png" ng-click="NowUse(coupon.couponId)">
+					<p class="dataleft"><span class="dataleftspan">￥</span><span class="dataleftmoney">{{coupon.Amount}}</span></p>
+					<p class="datacenter">
+						<span class="type brspan">{{coupon.title}}</span>
+						<span class="introduction brspan">满{{coupon.condition}}可用</span>
+						<span class="overtime brspan">{{coupon.expirationTime}}后过期</span>
+					</p>
+				</a>
+			</div>
+			<span ng-if="coupons.length<=0||!coupons" class="nocoupons" >
+						更多优惠券即将分发
+			</span>
+		</ion-content>
+	</body>
+
+</html>

@@ -1,0 +1,21 @@
+.ion_alpha_list_outer .list{
+	padding-right: 15px;
+}
+.ion_alpha_list_outer .item{
+	border-right: none;
+}
+.ion_alpha_sidebar{
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: 100%;
+	z-index: 99;
+}
+.ion_alpha_sidebar li{
+	height: 3.8%;
+	line-height: 1;
+	padding-top: 10px;
+}
+.ion_alpha_sidebar li:active{
+	background: #CCCCCC;
+}
